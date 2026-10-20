@@ -18,7 +18,9 @@ npm run build
 npm run preview
 ```
 
-发布时部署 `dist/` 内容；不能再以 Python 服务器直接运行源码。构建采用相对资源路径，适合 GitHub Pages 子目录。现有按 main 根目录发布的 Pages 设置需要改为发布构建产物，合并本 PR 不会自动完成部署。
+发布时部署 `dist/` 内容；不能再以 Python 服务器直接运行源码。构建采用相对资源路径，适合 GitHub Pages 子目录。仓库提供 `.github/workflows/pages.yml`，在 main 更新时自动安装依赖、构建并发布 `dist/`。
+
+首次启用：进入仓库 **Settings → Pages → Build and deployment → Source**，选择 **GitHub Actions**。合并后在 **Actions → Build and deploy GitHub Pages** 查看运行结果；必要时点击 **Run workflow** 手动部署 main。部署成功后再刷新站点。不要选择从 main 根目录直接发布，否则浏览器不能解析 `three` 导入，画面会停在「正在布置书斋」。
 
 ## 操作
 
