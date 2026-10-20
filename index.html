@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Cabinet of Curiosities</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <p class="eyebrow">A PRIVATE COLLECTION · 私人收藏室</p>
+    <h1>The Cabinet<br>of Curiosities</h1>
+    <p>每一件藏品，都藏着一个尚待探寻的问题。</p>
+  </header>
+  <main class="room">
+    <div class="room-heading"><span>STUDIUM · 书斋</span><span>三件藏品 / 第一室</span></div>
+    <section class="collection" aria-label="选择一件藏品，阅读并编辑问题">
+      <button class="artifact" data-object="sphere" aria-haspopup="dialog">
+        <span class="illustration sphere" aria-hidden="true">✧</span>
+        <span class="number">I</span><span class="object-name">浑天仪</span><span class="subject">天文学 · 轨道之问</span>
+      </button>
+      <button class="artifact" data-object="shell" aria-haspopup="dialog">
+        <span class="illustration shell" aria-hidden="true">◎</span>
+        <span class="number">II</span><span class="object-name">螺旋贝壳</span><span class="subject">数学 · 生长之序</span>
+      </button>
+      <button class="artifact" data-object="pendulum" aria-haspopup="dialog">
+        <span class="illustration pendulum" aria-hidden="true"><span></span></span>
+        <span class="number">III</span><span class="object-name">黄铜摆锤</span><span class="subject">物理学 · 时间之律</span>
+      </button>
+    </section>
+    <p class="room-note">选择一件藏品，开启一页思考。</p>
+  </main>
+  <footer>OBSERVE · QUESTION · WONDER<span>观察 / 提问 / 惊叹</span></footer>
+  <dialog id="question-card" aria-labelledby="card-title">
+    <form id="question-form">
+      <p class="eyebrow">COLLECTOR’S NOTES · 藏品札记</p>
+      <h2 id="card-title"></h2>
+      <label for="question">问题与思考</label>
+      <textarea id="question" rows="7"></textarea>
+      <p id="save-status" role="status">修改后，点击保存以保留札记。</p>
+      <div class="actions">
+        <button type="button" id="close-card">关闭</button>
+        <button type="submit" class="save">保存札记</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>

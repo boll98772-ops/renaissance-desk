@@ -1,2 +1,22 @@
-# renaissance-desk
-A Renaissance-inspired iPad icon editor
+# The Cabinet of Curiosities
+
+文艺复兴私人收藏室风格的网页：一个房间、三件藏品，以及可编辑的问题卡片。原生 HTML、CSS、JavaScript，无第三方依赖。
+
+## 运行
+
+在仓库目录执行（需要 Python 3）：
+
+```sh
+python3 -m http.server 8000
+```
+
+在浏览器中访问该服务器，点击藏品，编辑问题后点击「保存札记」。刷新并再次打开同一藏品，即可看到保存内容。关闭按钮或 Escape 键可关闭卡片；关闭不会保存未保存的修改。
+
+## 实现原理
+
+- `index.html` 定义房间、三个藏品按钮和共用的问题卡片。原生 `dialog` 元素负责模态显示、焦点管理和 Escape 关闭。
+- `style.css` 使用深木色背景、羊皮纸卡片、系统衬线字体；图案由 CSS 与字符绘制，不需要外部图片或字体。小屏幕下藏品纵向排列。
+- `script.js` 的 `objects` 对象存放三个初始问题。按钮上的 `data-object` 对应藏品 ID；点击时根据 ID 填写并打开卡片。
+- 保存时，以 `cabinet-question-藏品ID` 为键将文本写入 `localStorage`。打开时优先读取保存内容，否则显示初始问题。文本写入文本框的 `value`，不会作为 HTML 执行。
+
+数据仅保存在当前浏览器、当前站点下，不会同步到其他设备。清除站点数据会删除札记；不同域名或端口使用不同的存储空间。
