@@ -1,78 +1,22 @@
-:root { color-scheme: dark; --paper: #e8d8b6; --muted: #ac9874; --gold: #bfa06a; }
+ :root { color-scheme: dark; --paper: #e8d8b6; --muted: #ac9874; --gold: #bfa06a; }
 * { box-sizing: border-box; }
-body { margin: 0; min-height: 100vh; color: var(--paper); background: #17120f; font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", serif; }
-header { text-align: center; padding: 30px 20px 20px; }
-.eyebrow { color: var(--muted); font-size: 11px; letter-spacing: 3px; }
-h1 { font-size: clamp(32px, 4vw, 54px); font-weight: 400; line-height: 1.08; margin: 16px 0; }
-header > p:last-child { color: var(--muted); font-size: 13px; letter-spacing: 2px; line-height: 1.8; }
-main { max-width: 1140px; margin: auto; padding: 0 24px; }
-/* 透视只用于建筑和桌面。物件按钮留在正面图层，保持触控区域稳定。 */
-.room { position: relative; height: clamp(460px, 52vw, 610px); overflow: hidden; isolation: isolate; perspective: 900px; background: #201810; border: 8px ridge #563c27; box-shadow: 0 25px 65px #0008; }
-.architecture { position: absolute; inset: 0; perspective: 900px; pointer-events: none; }
-.back-wall { position: absolute; inset: 0 13% 25%; background: radial-gradient(ellipse at 80% 30%, #827052, #494030 55%, #32291e); box-shadow: inset 0 0 60px #0009; border-top: 15px ridge #553b25; border-bottom: 16px ridge #49321f; }
-.side-wall { position: absolute; top: 0; bottom: 0; width: 15%; background: repeating-linear-gradient(90deg, #0000 0 60px, #160e0970 61px 65px), linear-gradient(#36291d, #1d150f); }
-.left-wall { left: 0; clip-path: polygon(0 0,100% 0,100% 75%,0 100%); box-shadow: inset -20px 0 35px #0006; }
-.right-wall { right: 0; clip-path: polygon(0 0,100% 0,100% 100%,0 75%); background-color: #38291c; box-shadow: inset 20px 0 35px #0007; }
-/* 地板从后墙向观察者延伸，木板线条随 rotateX 产生透视。 */
-.floor { position: absolute; left: -25%; width: 150%; top: 73%; height: 75%; transform-origin: center top; transform: rotateX(64deg); background: repeating-linear-gradient(90deg, transparent 0 90px, #160d0990 91px 94px), repeating-linear-gradient(0deg, #513820 0 65px, #392619 66px 69px); box-shadow: inset 0 30px 50px #0009; }
-.window { position: absolute; right: 18%; top: 8%; width: 17%; height: 39%; padding: 10px; border: 7px ridge #58412b; border-radius: 48% 48% 0 0; background: #291e13; box-shadow: 10px 10px 25px #0007; }
-.window-glass { height: 100%; border-radius: 48% 48% 0 0; background: linear-gradient(90deg, transparent 46%, #493720 47% 53%, transparent 54%), linear-gradient(0deg, transparent 44%, #493720 45% 49%, transparent 50%), linear-gradient(140deg,#e8e1bb,#aaa98c 65%,#747e70); box-shadow: inset 0 0 20px #fff6; }
-.daylight { position: absolute; inset: 0; background: linear-gradient(125deg,transparent 45%,#ffe6a410 55%,#ffe6a400 82%); clip-path: polygon(68% 8%,82% 8%,100% 100%,22% 100%); }
-.bookcase { position: absolute; left: 17%; top: 9%; width: 31%; height: 65%; background: linear-gradient(90deg,#160f0b,#362317,#1a110c); border: 12px ridge #67462b; box-shadow: 12px 12px 20px #0007,inset 0 0 20px #000; }
-.books { position: absolute; left: 7%; right: 7%; height: 24%; background: repeating-linear-gradient(90deg,#685239 0 11px,#ac8c54 12px 13px,#382d25 14px 21px,#77513a 22px 36px,#241a14 37px 40px); border-top: 2px solid #92704a; box-shadow: inset 0 12px 16px #0006; }
-.upper-books { top: 5%; right: 18%; }
-.lower-books { top: 37%; right: 51%; height: 22%; }
-.shelf { position: absolute; left: -3%; width: 106%; height: 9px; background: linear-gradient(#967048,#3b2315); box-shadow: 0 5px 7px #0008; }
-.shelf-one { top: 30%; }.shelf-two { top: 63%; }
-.cabinet-doors { position: absolute; bottom: 2%; left: 3%; right: 3%; height: 28%; border: 5px ridge #5b3b25; background: linear-gradient(90deg,#392519 48%,#130d08 49% 51%,#392519 52%); }
-.desk-top { position: absolute; left: 28%; top: 65%; width: 57%; height: 19%; transform: rotateX(53deg); transform-origin: center top; background: repeating-linear-gradient(0deg,#ffffff03 0 2px,transparent 3px 24px),linear-gradient(100deg,#745032,#4b2d1a); border: 4px solid #8d633c; box-shadow: 0 10px 0 #321c10; }
-.desk-front { position: absolute; left: 26%; top: 76%; width: 61%; height: 6%; background: linear-gradient(#654125,#321e12); border: 3px ridge #775133; }
-.desk-leg { position: absolute; top: 79%; width: 3%; height: 19%; background: linear-gradient(90deg,#28180e,#765033,#382215); border-radius: 0 0 25% 25%; }
-.leg-left { left: 29%; }.leg-right { left: 80%; }
-.desk-shadow { position: absolute; left: 21%; top: 81%; width: 70%; height: 18%; background: #09060499; filter: blur(16px); border-radius: 50%; }
-.manuscript { position: absolute; left: 46%; top: 69%; width: 15%; height: 7%; transform: rotate(-8deg) skewX(-20deg); background: repeating-linear-gradient(0deg,transparent 0 5px,#69553766 6px 7px),#c9b48b; border: 5px solid #c9b48b; box-shadow: 2px 3px 4px #0007; }
+body { margin: 0; background: #17120f; color: var(--paper); font-family: Georgia, "Songti SC", "SimSun", serif; }
+header { text-align: center; padding: 24px 16px 12px; }
+.eyebrow { font-size: 11px; letter-spacing: 3px; color: var(--muted); }
+h1 { font-size: clamp(30px, 4vw, 48px); font-weight: 400; line-height: 1.1; margin: 14px; }
+header > p:last-child, .room-note { color: var(--muted); font-size: 13px; line-height: 1.8; }
+main { max-width: 1200px; padding: 0 16px; margin: auto; text-align: center; }
+.room { position: relative; height: clamp(400px, 64vh, 720px); border: 5px ridge #65472d; background: #231b15; }
+/* 仅画布接管触控，房间外仍可正常滚动页面。 */
+canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+canvas:active { cursor: grabbing; }
+#scene-status { position: absolute; left: 16px; right: 16px; top: 10px; pointer-events: none; font-size: 13px; color: var(--paper); }
 button, textarea { font: inherit; }
-/* 三件藏品分别落在桌面中央、桌面右侧与书柜中层。 */
-.artifact { position: absolute; z-index: 1; border: 0; padding: 4px; background: transparent; color: var(--paper); cursor: pointer; touch-action: manipulation; display: flex; flex-direction: column; align-items: center; min-width: 70px; min-height: 70px; }
-.object-name { font-size: 12px; letter-spacing: 2px; white-space: nowrap; padding: 4px 7px; background: #21160cd9; color: #e0c99d; border-bottom: 1px solid #ac8653; }
-.artifact:hover .object-name { color: #fff2ce; background: #513820; }
-button:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
-.globe-object { left: 48%; bottom: 26%; width: 17%; }
-.globe { position: relative; display: block; width: 115px; height: 145px; filter: drop-shadow(7px 9px 5px #0006); }
-.globe-orb { position: absolute; top: 6px; left: 9px; width: 96px; height: 96px; border: 3px solid #c2a46c; border-radius: 50%; background: repeating-linear-gradient(0deg,transparent 0 20px,#b89d6144 21px 22px),radial-gradient(circle at 35% 28%,#6b7866,#263e38 65%,#17241f); transform: rotate(-23deg); box-shadow: inset -10px -6px 20px #0009; }
-.globe-orb::before,.globe-orb::after { content: ""; position: absolute; inset: -8px 20px; border: 3px solid #c2a46c; border-radius: 50%; }
-.globe-orb::after { inset: 25px -13px; transform: rotate(-18deg); }
-.globe-base { position: absolute; bottom: 3px; left: 18px; width: 80px; height: 12px; border-radius: 50%; background: linear-gradient(#ba965a,#684825); box-shadow: 0 5px #392516; }
-.globe-base::before { content: ""; position: absolute; width: 12px; height: 28px; background: linear-gradient(90deg,#684825,#c6aa70,#684825); bottom: 8px; left: 34px; }
-.shell-object { left: 66%; bottom: 23%; width: 13%; }
-.shell { width: 105px; height: 78px; filter: drop-shadow(5px 7px 3px #0009); transform: rotate(-9deg); }
-.pendulum-object { left: 33%; top: 33%; width: 12%; }
-.pendulum { position: relative; display: block; width: 70px; height: 108px; border: 5px solid #957246; border-bottom-width: 8px; background: #160e0844; box-shadow: 4px 4px 4px #0007; }
-.pendulum-thread { position: absolute; left: 50%; top: 0; width: 2px; height: 65px; background: #ccb57e; transform-origin: top; transform: rotate(-15deg); }
-.pendulum-thread::after { content: ""; position: absolute; left: -12px; bottom: -12px; width: 26px; height: 26px; border-radius: 50%; background: radial-gradient(circle at 30% 25%,#efdaa1,#a48143 55%,#51381e); }
-.room-inscription { position: absolute; top: 1%; left: 16%; font-size: 9px; letter-spacing: 3px; color: #c2aa81; pointer-events: none; }
-.room-note { text-align: center; color: var(--muted); font-size: 13px; line-height: 1.8; }
-footer { padding: 12px 20px 24px; text-align: center; color: #968060; letter-spacing: 3px; font-size: 10px; }
-footer span { display: block; margin-top: 10px; letter-spacing: 4px; }
-/* iPad 竖屏保留完整房间，而非将藏品改成列表。 */
-@media (max-width: 850px) {
-  .room { height: 560px; }
-  .bookcase { left: 12%; width: 36%; }
-  .pendulum-object { left: 32%; top: 34%; }
-  .window { right: 15%; width: 22%; }
-  .globe-object { left: 45%; }
-  .shell-object { left: 76%; }
-}
-@media (max-width: 500px) {
-  main { padding: 0 8px; }
-  .room { height: 480px; border-width: 4px; }
-  .globe { transform: scale(.8); transform-origin: center bottom; margin-top: -25px; }
-  .globe-object { left: 43%; }
-  .shell { width: 75px; }
-  .pendulum { width: 55px; height: 98px; }
-  .pendulum-object { left: 29%; }
-  .object-name { font-size: 11px; letter-spacing: 0; }
-}
+#open-note { padding: 10px 18px; color: var(--paper); border: 1px solid #8c704b; background: #322319; cursor: pointer; }
+button:focus-visible, canvas:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+footer { text-align: center; padding: 24px; font-size: 10px; letter-spacing: 3px; color: var(--muted); }
+footer span { display: block; margin-top: 8px; }
+@media (orientation: portrait) { .room { height: 58vh; min-height: 400px; } }
 dialog { width: min(520px, calc(100% - 32px)); max-height: 90vh; overflow: auto; padding: 32px; border: 1px solid var(--gold); color: #36291e; background: #e8d8b6; box-shadow: 0 24px 90px #0009; }
 dialog::backdrop { background: #100c09cc; }
 dialog .eyebrow { color: #756044; line-height: 1.8; }
