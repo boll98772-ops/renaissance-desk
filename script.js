@@ -1,3 +1,5 @@
+import { createStudy } from "./study.js";
+
 // 每件藏品都有独立的 ID、名称和初始问题。
 const objects = {
   sphere: {
@@ -20,22 +22,21 @@ const question = document.querySelector("#question");
 const status = document.querySelector("#save-status");
 let selectedId = null;
 
-// 打开时优先读取保存值，没有保存值时显示初始问题。
-document.querySelectorAll(".artifact").forEach((button) => {
-  button.addEventListener("click", () => {
-    selectedId = button.dataset.object;
-    title.textContent = objects[selectedId].title;
-    question.value = objects[selectedId].question;
-    status.textContent = "修改后，点击保存以保留札记。";
-    try {
-      const saved = localStorage.getItem("cabinet-question-" + selectedId);
-      if (saved !== null) question.value = saved;
-    } catch {
-      status.textContent = "浏览器无法读取本地存储。你仍可编辑，但可能无法保存。";
-    }
-    card.showModal();
-  });
-});
+// 三维物件和键盘可访问的按钮共用同一个编辑窗口。
+function openQuestion() {
+  selectedId = "sphere";
+  title.textContent = "浑天仪";
+  question.value = objects.sphere.question;
+  status.textContent = "修改后，点击保存以保留札记。";
+  try {
+    const saved = localStorage.getItem("cabinet-question-sphere");
+    if (saved !== null) question.value = saved;
+  } catch {
+    status.textContent = "浏览器无法读取本地存储。";
+  }
+  card.showModal();
+}
+document.querySelector("#open-note").addEventListener("click", openQuestion);
 
 // localStorage 以字符串保存内容，刷新后仍可读取。
 document.querySelector("#question-form").addEventListener("submit", (event) => {
@@ -55,3 +56,12 @@ question.addEventListener("input", () => {
 document.querySelector("#close-card").addEventListener("click", () => {
   card.close();
 });
+
+const sceneStatus = document.querySelector("#scene-status");
+try {
+  createStudy(document.querySelector("#study"), openQuestion);
+  sceneStatus.hidden = true;
+} catch (error) {
+  sceneStatus.textContent = "三维场景无法启动，请使用支持 WebGL 2 的浏览器。仍可通过下方按钮编辑札记。";
+  console.error(error);
+}
