@@ -12,23 +12,50 @@
     <h1>The Cabinet<br>of Curiosities</h1>
     <p>每一件藏品，都藏着一个尚待探寻的问题。</p>
   </header>
-  <main class="room">
-    <div class="room-heading"><span>STUDIUM · 书斋</span><span>三件藏品 / 第一室</span></div>
-    <section class="collection" aria-label="选择一件藏品，阅读并编辑问题">
-      <button class="artifact" data-object="sphere" aria-haspopup="dialog">
-        <span class="illustration sphere" aria-hidden="true">✧</span>
-        <span class="number">I</span><span class="object-name">浑天仪</span><span class="subject">天文学 · 轨道之问</span>
+  <main>
+    <section class="room" aria-label="私人书斋：选择一件藏品，阅读并编辑研究问题">
+      <!-- 墙面与地板构成透视空间；装饰不接收点击。 -->
+      <div class="architecture" aria-hidden="true">
+        <div class="back-wall"></div>
+        <div class="side-wall left-wall"></div>
+        <div class="side-wall right-wall"></div>
+        <div class="floor"></div>
+        <div class="window"><div class="window-glass"></div></div>
+        <div class="daylight"></div>
+        <div class="bookcase">
+          <div class="books upper-books"></div>
+          <div class="books lower-books"></div>
+          <div class="shelf shelf-one"></div>
+          <div class="shelf shelf-two"></div>
+          <div class="cabinet-doors"></div>
+        </div>
+        <div class="desk-shadow"></div>
+        <div class="desk-leg leg-left"></div>
+        <div class="desk-leg leg-right"></div>
+        <div class="desk-top"></div>
+        <div class="desk-front"></div>
+        <div class="manuscript"></div>
+      </div>
+      <!-- 按钮独立定位，保留原来的 data-object 与存储键。 -->
+      <button class="artifact globe-object" data-object="sphere" aria-haspopup="dialog" aria-label="天球仪：打开研究问题">
+        <span class="globe" aria-hidden="true"><span class="globe-orb"></span><span class="globe-base"></span></span>
+        <span class="object-name">天球仪</span>
       </button>
-      <button class="artifact" data-object="shell" aria-haspopup="dialog">
-        <span class="illustration shell" aria-hidden="true">◎</span>
-        <span class="number">II</span><span class="object-name">螺旋贝壳</span><span class="subject">数学 · 生长之序</span>
+      <button class="artifact shell-object" data-object="shell" aria-haspopup="dialog" aria-label="螺旋贝壳：打开研究问题">
+        <svg class="shell" viewBox="0 0 140 100" aria-hidden="true">
+          <defs><radialGradient id="shell-color" cx="35%" cy="30%"><stop stop-color="#f1dfba"/><stop offset=".6" stop-color="#c99f6f"/><stop offset="1" stop-color="#785034"/></radialGradient></defs>
+          <path d="M120 77 Q85 99 46 81 C-6 60 16 5 65 10 C110 13 121 64 84 74 C53 83 32 51 52 35 C70 21 92 40 80 54 C71 64 59 54 64 46" fill="url(#shell-color)" stroke="#785034" stroke-width="3"/>
+          <path d="M39 19 L48 33 M23 35 L43 42 M22 55 L42 53 M33 73 L49 63 M53 84 L59 72 M77 86 L76 76 M99 82 L92 72" fill="none" stroke="#f6e5c3" stroke-width="2" opacity=".55"/>
+        </svg>
+        <span class="object-name">螺旋贝壳</span>
       </button>
-      <button class="artifact" data-object="pendulum" aria-haspopup="dialog">
-        <span class="illustration pendulum" aria-hidden="true"><span></span></span>
-        <span class="number">III</span><span class="object-name">黄铜摆锤</span><span class="subject">物理学 · 时间之律</span>
+      <button class="artifact pendulum-object" data-object="pendulum" aria-haspopup="dialog" aria-label="黄铜摆锤：打开研究问题">
+        <span class="pendulum" aria-hidden="true"><span class="pendulum-thread"></span></span>
+        <span class="object-name">黄铜摆锤</span>
       </button>
+      <p class="room-inscription">STUDIUM · 私人书斋</p>
     </section>
-    <p class="room-note">选择一件藏品，开启一页思考。</p>
+    <p class="room-note">轻触天球仪、贝壳或摆锤，翻开研究札记。</p>
   </main>
   <footer>OBSERVE · QUESTION · WONDER<span>观察 / 提问 / 惊叹</span></footer>
   <dialog id="question-card" aria-labelledby="card-title">
